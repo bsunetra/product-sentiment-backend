@@ -1,7 +1,10 @@
+import os
 from pymongo import MongoClient
 
-MONGO_URI = "mongodb+srv://user:pass@cluster.mongodb.net/sentiment_db"
+MONGO_URI = os.environ.get("MONGO_URI")
 
 client = MongoClient(MONGO_URI)
-db = client["sentiment_db"]
+
+db = client["ProductSentimentDB"]
+
 reviews_collection = db["reviews"]

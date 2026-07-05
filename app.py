@@ -5,6 +5,18 @@ from db import reviews_collection
 app = Flask(__name__)
 CORS(app)
 
+@app.route("/")
+def home():
+    return jsonify({
+        "message": "Product Sentiment Analyzer Backend is running successfully!",
+        "status": "Live",
+        "endpoints": [
+            "/api/reviews",
+            "/api/sentiment",
+            "/api/search?q=keyword"
+        ]
+    })
+
 @app.route("/api/reviews", methods=["GET"])
 def get_reviews():
     reviews = list(reviews_collection.find({}, {"_id": 0}))
